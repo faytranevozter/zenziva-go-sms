@@ -156,8 +156,7 @@ func (zen *Zenziva) getSendSMSURL() string {
 }
 
 func (zen *Zenziva) requestAPI(data payload) (resAPI Response, err error) {
-	// url := zen.getSendSMSURL()
-	url := "http://localhost/j.php"
+	url := zen.getSendSMSURL()
 
 	v, _ := query.Values(data)
 	payload := strings.NewReader(v.Encode())
