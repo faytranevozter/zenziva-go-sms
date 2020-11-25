@@ -1,4 +1,4 @@
-module zenziva-go-sms
+module github.com/faytranevozter/zenziva-go-sms
 
 go 1.13
 
