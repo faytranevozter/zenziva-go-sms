@@ -3,6 +3,8 @@ Zenziva SMS Online Gateway Library based on Zenziva [Documentation](https://www.
 
 
 ## Installation
+**If you are using [go mod](https://blog.golang.org/using-go-modules), then you skip this installation step.**
+
 Simple install the package to your [$GOPATH](https://github.com/golang/go/wiki/GOPATH "GOPATH") with the [go tool](https://golang.org/cmd/go/ "go command") from shell:
 ```bash
 $ go get -u github.com/faytranevozter/zenziva-go-sms
@@ -80,7 +82,7 @@ if res.Status {
 ```go
 // print(res)
 // {
-//   "message_id": 41,
+//   "message_id": "41",
 //   "to": "081111111111",
 //   "status": true,
 //   "message": "Success"

@@ -5,8 +5,6 @@ import (
 	"errors"
 	"io/ioutil"
 	"net/http"
-	"reflect"
-	"strconv"
 	"strings"
 
 	"github.com/google/go-querystring/query"
@@ -33,7 +31,7 @@ type zenResponse map[string]interface{}
 
 // Response API
 type Response struct {
-	MessageID int64  `json:"message_id"`
+	MessageID string `json:"message_id"`
 	To        string `json:"to"`
 	Status    bool   `json:"status"`
 	Message   string `json:"message"`
@@ -176,17 +174,8 @@ func (zen *Zenziva) requestAPI(data payload) (resAPI Response, err error) {
 		return
 	}
 
-	messageID := 0
-	if reflect.TypeOf(zenRes["messageId"]).String() == "string" {
-		if zenRes["messageId"] != "" {
-			messageID, _ = strconv.Atoi(zenRes["messageId"].(string))
-		}
-	} else if reflect.TypeOf(zenRes["messageId"]).String() == "float64" {
-		messageID = int(zenRes["messageId"].(float64))
-	}
-
 	resAPI = Response{
-		MessageID: int64(messageID),
+		MessageID: zenRes["messageId"].(string),
 		To:        zenRes["to"].(string),
 		Status:    zenRes["status"].(string) == "1",
 		Message:   zenRes["text"].(string),
